@@ -61,7 +61,7 @@ public class HumanPlayer extends Player{
             }
 
             if (i == 5) { // the one-segment ship
-                getHiddenMap()[move[0]][move[1]] = true;
+                setHiddenMapAt(move[0], move[1], true);
                 getShip(i+1)[0] = move[0]; getShip(i+1)[1] = move[1];
                 board.drawBoard();
                 System.out.println();

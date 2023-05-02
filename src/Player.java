@@ -13,8 +13,6 @@ public abstract class Player{
     private Ship ship6;
     private Ship ship7;
 
-
-
     public Player(int size) {
         this.size = size;
         this.hiddenMap = new Map(size);
@@ -54,6 +52,12 @@ public abstract class Player{
      */
     public abstract boolean checkIfHit(int[] guess, Player other);
 
+    /**
+     * checks every part of the ship hit in the move is now gone
+     * @param guess the current move
+     * @param other the other player, which ship was hit
+     * @return true, if the ship is sunk, false if not
+     */
     public boolean checkIfSunk(int[] guess, Player other) {
         if (size >= 5) {
                 // Ship 3

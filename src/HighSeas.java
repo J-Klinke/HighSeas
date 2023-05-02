@@ -5,14 +5,36 @@ public class HighSeas {
 
     public int size = 0;
     private char activePlayer = 'P';
-    private int difficulty = 1; //since no other difficulties are implemented in 1.1, difficulty is hardcoded
+    private int difficulty;
 
     ComputerPlayer computer;
     HumanPlayer player;
 
     private Board board = new Board();
 
+    /**
+     * allows the difficulty to be set. Sets difficulty to 1, if 'easy' is chosen, to 2, if 'hard' is chosen
+     */
+    public void setDifficulty() {
+        int difficulty = 0;
+        boolean acceptable = false;
+        System.out.println("Now enter the difficulty level you want to play at. ");
+        System.out.print("Type 'easy' or 'hard': ");
+        while (!acceptable) {
+            String difficultyInput = in.next();
+            if (difficultyInput.equals("easy")) {
+                difficulty = 1;
+                acceptable = true;
+            } else if (difficultyInput.equals("hard")) {
+                difficulty = 2;
+                acceptable = true;
+            } else {
+                System.out.println("Please enter 'easy' oder 'hard'.");
+            }
 
+        }
+        this.difficulty = difficulty;
+    }
 
     /**
      * in this method the player chooses how big the map should be. The possible options are 5x5, 9x9 or 13x13.
@@ -100,7 +122,7 @@ public class HighSeas {
      * this method executes the whole program and is the only method that needs to be in the main method
      */
     public void game(){
-        //difficulty
+        setDifficulty();
         size = initializeSize();
         board.setSize(size);
         initializePlayers();
