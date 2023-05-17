@@ -21,19 +21,19 @@ public class Board {
      * draws the line where the number of the fields are displayed.
      */
     private void drawLowerFieldNumberLine() {
-        drawWave(size == 13 ? 6 : 4, false);
+        drawWave(size == Size.BIG ? 6 : 4, false);
         System.out.print(" ");
         for (int i = 1; i <= size; i++) {
-            System.out.print("|" + (i > 9 ? (i - 10) : i));
+            System.out.print("|" + (i > Size.MEDIUM ? (i - 10) : i));
         }
         System.out.print("| ");
-        drawWave(size == 13 ? 11 : 7, false);
+        drawWave(size == Size.BIG ? 11 : 7, false);
         System.out.print(" ");
         for (int i = 1; i <= size; i++) {
-            System.out.print("|" + (i > 9 ? (i - 10) : i));
+            System.out.print("|" + (i > Size.MEDIUM ? (i - 10) : i));
         }
         System.out.print("| ");
-        drawWave(size == 13 ? 5 : 3, true);
+        drawWave(size == Size.BIG ? 5 : 3, true);
     }
 
     /**
@@ -41,19 +41,19 @@ public class Board {
      * in large it also contains numbers.
      */
     private void drawUpperFieldNumberLine() {
-        drawWave(size == 13 ? 6 : 4, false);
+        drawWave(size == Size.BIG ? 6 : 4, false);
         System.out.print(" ");
         for (int i = 1; i <= size; i++) {
-            System.out.print("|" + (i > 9 ? (1) : "~"));
+            System.out.print("|" + (i > Size.MEDIUM ? (1) : "~"));
         }
         System.out.print("| ");
-        drawWave(size == 13 ? 11 : 7, false);
+        drawWave(size == Size.BIG ? 11 : 7, false);
         System.out.print(" ");
         for (int i = 1; i <= size; i++) {
-            System.out.print("|" + (i > 9 ? (1) : "~"));
+            System.out.print("|" + (i > Size.MEDIUM ? (1) : "~"));
         }
         System.out.print("| ");
-        drawWave(size == 13 ? 5 : 3, true);
+        drawWave(size == Size.BIG ? 5 : 3, true);
     }
 
     /**
@@ -61,14 +61,14 @@ public class Board {
      */
     private void drawPlayerIdentifierLine() {
         switch (size) {
-            case 5 -> {
+            case Size.SMALL -> {
                 drawWave(5, false);
                 System.out.print(" Your Map ");
                 drawWave(10, false);
                 System.out.print(" Enemy Map ");
                 drawWave(4, true);
             }
-            case 9 -> {
+            case Size.MEDIUM -> {
                 drawWave(9, false);
                 System.out.print(" Your Map ");
                 drawWave(18, false);
@@ -76,7 +76,7 @@ public class Board {
                 drawWave(8, true);
 
             }
-            case 13 -> {
+            case Size.BIG -> {
                 drawWave(16, false);
                 System.out.print(" Your Map ");
                 drawWave(28, false);
@@ -93,18 +93,18 @@ public class Board {
     private void drawTitleLine() {
         drawFillLine();
         switch (size) {
-            case 5 -> {
+            case Size.SMALL -> {
                 drawWave(15, false);
                 System.out.print(" High Seas ");
                 drawWave(14, true);
             }
-            case 9 -> {
+            case Size.MEDIUM -> {
                 drawWave(23, false);
                 System.out.print(" High Seas ");
                 drawWave(22, true);
 
             }
-            case 13 -> {
+            case Size.BIG -> {
                 drawWave(35, false);
                 System.out.print(" High Seas ");
                 drawWave(34, true);
@@ -120,17 +120,17 @@ public class Board {
      */
     private void drawLowerSection() {
         for (int i = 1; i <= size; i++) {
-            drawWave(size == 13 ? 6 : 4, false);
+            drawWave(size == Size.BIG ? 6 : 4, false);
             printFieldLetter(i);
             for (int j = 0; j < size; j++) {
                 System.out.print((player.getHiddenMap()[i - 1][j] ? "x" : "~") + "|");
             }
-            drawWave(size == 13 ? 12 : 8, false);
+            drawWave(size == Size.BIG ? 12 : 8, false);
             printFieldLetter(i);
             for (int j = 0; j < size; j++) {
                 System.out.print((computer.getVisibleMap()[i - 1][j] ? "x" : "~") + "|");
             }
-            drawWave(size == 13 ? 6 : 4, true);
+            drawWave(size == Size.BIG ? 6 : 4, true);
         }
     }
 
@@ -164,7 +164,7 @@ public class Board {
      * helper method: draws a line containing '~'.
      */
     private void drawFillLine() {
-        for (int i = 0; i < (2 * size + 1) * 2 + 18 + (size == 13 ? 8 : 0); i++) {
+        for (int i = 0; i < (2 * size + 1) * 2 + 18 + (size == Size.BIG ? 8 : 0); i++) {
             System.out.print("~");
         }
         System.out.println();

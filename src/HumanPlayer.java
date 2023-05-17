@@ -36,9 +36,9 @@ public class HumanPlayer extends Player{
         System.out.println();
         System.out.println("You can now choose where to place your ships.");
         switch (size) {
-            case 5 -> System.out.println("You must place three ships: two two-segment ships and one three-segment ship.");
-            case 9 -> System.out.println("You must place five ships: three two-segment ships and two three-segment ships.");
-            case 13 -> System.out.println("You must place seven ships: three two-segment ships, two three-segment ship, " +
+            case Size.SMALL -> System.out.println("You must place three ships: two two-segment ships and one three-segment ship.");
+            case Size.MEDIUM -> System.out.println("You must place five ships: three two-segment ships and two three-segment ships.");
+            case Size.BIG -> System.out.println("You must place seven ships: three two-segment ships, two three-segment ship, " +
                     "one one-segment ship and one four-segment ship");
         }
 
@@ -48,7 +48,7 @@ public class HumanPlayer extends Player{
         for (int i = 0; i < getShips().length; i++) {
             switch (i) { // initial printout
                 case 0 -> System.out.println("For the first two-segment ship:");
-                case 1 -> System.out.println("Now the" + (size==5?" ":" first ") + "two-segment ship:");
+                case 1 -> System.out.println("Now the" + (size==Size.SMALL?" ":" first ") + "two-segment ship:");
                 case 2 -> System.out.println("Now the first three-segment ship");
                 case 3 -> System.out.println("Now the third two-segment ship:");
                 case 4 -> System.out.println("Now the second three-segment ship:"); 
@@ -323,10 +323,10 @@ public class HumanPlayer extends Player{
             System.out.print("Enter row: ");
             row = inputScanner.next().toLowerCase();
             if (row.equals("a") ||  row.equals("b") || row.equals("c") || row.equals("d") || row.equals("e")
-                    || row.equals("f")&&size>5 || row.equals("g")&&size>5
-                    || row.equals("h")&&size>5 || row.equals("i")&&size>5
-                    || row.equals("j")&&size>9 || row.equals("k")&&size>9
-                    || row.equals("l")&&size>9 || row.equals("m")&&size>9) {
+                    || row.equals("f")&&size>Size.SMALL || row.equals("g")&&size>Size.SMALL
+                    || row.equals("h")&&size>Size.SMALL || row.equals("i")&&size>Size.SMALL
+                    || row.equals("j")&&size>Size.MEDIUM || row.equals("k")&&size>Size.MEDIUM
+                    || row.equals("l")&&size>Size.MEDIUM || row.equals("m")&&size>Size.MEDIUM) {
                 if (!startUp) {guessString.append(row.toUpperCase()).append("-");}
                 switch (row) {
                     case "a" -> row = "0";
@@ -347,9 +347,9 @@ public class HumanPlayer extends Player{
             } else {
                 System.out.print("You must enter either 'a', 'b', 'c', 'd'");
                 switch (size) {
-                    case 5 -> System.out.println(" or e.");
-                    case 9 -> System.out.println(" 'e', 'f', 'g', 'h', or 'i'.");
-                    case 13 -> System.out.println(" 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l' or 'm'.");
+                    case Size.SMALL -> System.out.println(" or e.");
+                    case Size.MEDIUM -> System.out.println(" 'e', 'f', 'g', 'h', or 'i'.");
+                    case Size.BIG -> System.out.println(" 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l' or 'm'.");
                 }
             }
         }
@@ -386,7 +386,7 @@ public class HumanPlayer extends Player{
         Collections.sort(getGuessList());
         for (int i = 0; i < getGuessList().size(); i++){
             System.out.print(getGuessList().get(i) + ", ");
-            if (i%(size==5?7:(size==9?10:14)) == 0 && i > 0) {
+            if (i%(size==Size.SMALL?7:(size==Size.MEDIUM?10:14)) == 0 && i > 0) {
                 System.out.println();
             }
         }
