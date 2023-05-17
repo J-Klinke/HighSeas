@@ -45,8 +45,8 @@ public class ComputerPlayer extends Player{
 
 
     /**
-     * in this method, the computerPlayers hidden Map will be randomly filled
-     * In relation to HighSeas.size more or less ship will be placed. Calls the makeMove() method.
+     * in this method, the computerPlayer's hidden Map will be randomly filled
+     * in relation to HighSeas.size more or less ship will be placed. Calls the makeMove() method.
      */
     @Override
     public void generateShips() {
@@ -65,7 +65,7 @@ public class ComputerPlayer extends Player{
             }
 
             boolean directionAcceptable = false;
-            String direction;
+            char direction;
 
             while (!directionAcceptable) { // while the entered direction causes range problems
                 // or a space to be filled with a ships part, this loop restarts
@@ -74,7 +74,7 @@ public class ComputerPlayer extends Player{
                     // for each direction the possible range and occupancy problems get checked
                     // & the chosen coordinates are written to the map.
                     // Additionally, the chosen fields get written to the ship arrays
-                    case "u" -> {
+                    case 'u' -> {
                         if ((i < 2 || i == 3) && move[0] != 0) { // two-segment ship
                             if (getHiddenMap()[move[0] - 1][move[1]]) {
                                 i--;
@@ -119,7 +119,7 @@ public class ComputerPlayer extends Player{
                             }
                         }
                     }
-                    case "d" -> {
+                    case 'd' -> {
                         if ((i < 2 || i == 3) && move[0] != size-1) { // two-segment ship
                             if (getHiddenMap()[move[0] + 1][move[1]]) {
                                 i--;
@@ -164,7 +164,7 @@ public class ComputerPlayer extends Player{
                             }
                         }
                     }
-                    case "l" -> {
+                    case 'l' -> {
                         if ((i < 2 || i == 3) && move[1] != 0) { // two-segment ship
                             if (getHiddenMap()[move[0]][move[1] - 1]) {
                                 i--;
@@ -209,7 +209,7 @@ public class ComputerPlayer extends Player{
                             }
                         }
                     }
-                    case "r" -> {
+                    case 'r' -> {
                         if ((i < 2 || i == 3) && move[1] != size-1) { // two-segment ship
                             if (getHiddenMap()[move[0]][move[1] + 1]) {
                                 i--;
@@ -306,14 +306,15 @@ public class ComputerPlayer extends Player{
      * allows the computerPlayer to choose a direction in the generateShips() method.
      * @return the direction as a char: 'u','d','l' or 'r'
      */
-    private String chooseDirection() {
+    private char chooseDirection() {
         int rnd = random.nextInt(4);
+        char direction = '0';
         switch (rnd) {
-            case 0 -> {return "u";}
-            case 1 -> {return "d";}
-            case 2 -> {return "l";}
-            case 3 -> {return "r";}
+            case 0 -> direction = 'u';
+            case 1 -> direction = 'd';
+            case 2 -> direction = 'l';
+            case 3 -> direction = 'r';
         }
-        return "-1";
+        return direction;
     }
 }

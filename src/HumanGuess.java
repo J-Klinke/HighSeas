@@ -1,6 +1,6 @@
 public class HumanGuess implements Comparable<HumanGuess> {
 
-    private String guess;
+    private final String guess;
 
     public HumanGuess(String guess) {
         this.guess = guess;
@@ -14,13 +14,15 @@ public class HumanGuess implements Comparable<HumanGuess> {
      */
     @Override
     public int compareTo(HumanGuess other) {
+        int guessInt;
         if (this.guess.charAt(0) == other.guess.charAt(0)) {
             String[] splitGuessThis = this.guess.split("-");
             String[] splitGuessOther = other.guess.split("-");
-            return Integer.parseInt(splitGuessThis[1]) - Integer.parseInt(splitGuessOther[1]);
+            guessInt = Integer.parseInt(splitGuessThis[1]) - Integer.parseInt(splitGuessOther[1]);
         } else {
-            return this.guess.charAt(0) - other.guess.charAt(0);
+            guessInt = this.guess.charAt(0) - other.guess.charAt(0);
         }
+        return guessInt;
     }
 
     @Override

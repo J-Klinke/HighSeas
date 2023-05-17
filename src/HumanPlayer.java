@@ -11,15 +11,17 @@ public class HumanPlayer extends Player{
 
     @Override
     public boolean checkIfHit(int[] guess, Player other) {
+        boolean hit;
         if (other.getHiddenMap()[guess[0]][guess[1]]) {
             System.out.println("Hit!");
             other.getVisibleMap()[guess[0]][ guess[1]] = true;
             other.setHiddenMapAt(guess[0], guess[1], false);
-            return true;
+            hit = true;
         } else {
             System.out.println("You missed!");
-            return false;
+            hit = false;
         }
+        return hit;
     }
 
 

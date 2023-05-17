@@ -48,8 +48,8 @@ public class HighSeas {
     }
 
     /**
-     * this method initializes both players. this isn't done in a constructor, since the size must be is not chosen at
-     * this point in time
+     * this method initializes both players. This isn't done in a constructor, since the size must be is not chosen at
+     * this point in time.
      */
     public void initializePlayers(){
         this.player = new HumanPlayer(size);
@@ -59,17 +59,17 @@ public class HighSeas {
     }
 
     /**
-     * helper method to clean the screen whenever necessary
+     * helper method to clean the screen whenever necessary.
      */
-    void clearScreen(){
+    public void clearScreen(){
         System.out.print("\u001b[2J");
         System.out.flush();
     }
 
     /**
-     * this method toggles the active player. it will be called by game() every turn
+     * this method toggles the active player. it will be called by game() every turn.
      */
-    void togglePlayer() {
+    public void togglePlayer() {
         if (activePlayer == 'C'){
             activePlayer = 'P';
         } else {
@@ -80,20 +80,21 @@ public class HighSeas {
 
     /**
      * this method checks if the game is over (if the map of the non-active player is only containing 'false')
-     * it's called at the end of every turn in which the active player sunk a ship
-     * @return boolean value whether game ist over or not.
+     * it's called at the end of every turn in which the active player sunk a ship.
+     * @return boolean value whether game ist over or not
      */
     public boolean gameOver() {
+        boolean gameOver = true;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 if (activePlayer == 'P' && computer.getHiddenMap()[i][j]) {
-                    return false;
+                    gameOver = false;
                 } else if (activePlayer == 'C' && player.getHiddenMap()[i][j]) {
-                    return false;
+                    gameOver = false;
                 }
             }
         }
-        return true;
+        return gameOver;
     }
 
     /**

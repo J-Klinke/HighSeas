@@ -156,25 +156,25 @@ public abstract class Player{
     public int[] getShip(int number) {
         switch (number){
             case 1 -> {
-                return ship1.location;
+                return ship1.getLocation();
             }
             case 2 -> {
-                return ship2.location;
+                return ship2.getLocation();
             }
             case 3 -> {
-                return ship3.location;
+                return ship3.getLocation();
             }
             case 4 -> {
-                return ship4.location;
+                return ship4.getLocation();
             }
             case 5 -> {
-                return ship5.location;
+                return ship5.getLocation();
             }
             case 6 -> {
-                return ship6.location;
+                return ship6.getLocation();
             }
             case 7 -> {
-                return ship7.location;
+                return ship7.getLocation();
             }
         }
         return new int[] {-1,-1};
